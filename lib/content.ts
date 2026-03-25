@@ -125,6 +125,12 @@ export const socialLinks: SocialLink[] = [
   },
 ];
 
+export const aboutStats = [
+  { value: 5, suffix: "+", label: "Projects" },
+  { value: 13, label: "Technologies" },
+  { value: 3, suffix: "+", label: "Years Coding" },
+];
+
 export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },

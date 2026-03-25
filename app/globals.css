@@ -43,3 +43,23 @@ body {
   overflow-x: hidden;
 }
 
+.keyword-shimmer {
+  background: linear-gradient(
+    120deg,
+    #38B0A6 0%,
+    #A1DCAC 40%,
+    #38B0A6 60%,
+    #38B0A6 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 200% center; }
+  50% { background-position: 0% center; }
+}
+
