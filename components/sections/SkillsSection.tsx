@@ -13,28 +13,52 @@ const categories = [
 ];
 
 export function SkillsSection() {
-  const gridRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!gridRef.current) return;
+    if (!sectionRef.current) return;
 
-    const cards = gridRef.current.querySelectorAll("[data-skill-card]");
+    const groups = sectionRef.current.querySelectorAll("[data-skill-group]");
 
-    gsap.fromTo(
-      cards,
-      { y: 60, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.5,
-        stagger: 0.05,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: gridRef.current,
-          start: "top 75%",
-        },
+    groups.forEach((group, groupIndex) => {
+      const label = group.querySelector("[data-skill-label]");
+      const cards = group.querySelectorAll("[data-skill-card]");
+
+      if (label) {
+        gsap.fromTo(
+          label,
+          { x: -30, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.5,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: group,
+              start: "top 80%",
+            },
+          }
+        );
       }
-    );
+
+      gsap.fromTo(
+        cards,
+        { y: 40, opacity: 0, scale: 0.95 },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 0.4,
+          stagger: 0.06,
+          ease: "power3.out",
+          delay: 0.15,
+          scrollTrigger: {
+            trigger: group,
+            start: "top 80%",
+          },
+        }
+      );
+    });
   }, []);
 
   let cardIndex = 0;
@@ -44,14 +68,17 @@ export function SkillsSection() {
       <div className="max-w-5xl mx-auto">
         <SectionHeading title="Skills & Tech" />
 
-        <div ref={gridRef} className="space-y-12">
+        <div ref={sectionRef} className="space-y-12">
           {categories.map((cat) => {
             const categorySkills = skills.filter((s) => s.category === cat.key);
             if (categorySkills.length === 0) return null;
 
             return (
-              <div key={cat.key}>
-                <h3 className="text-sm uppercase tracking-widest text-teal mb-4 font-mono">
+              <div key={cat.key} data-skill-group>
+                <h3
+                  data-skill-label
+                  className="text-sm uppercase tracking-widest text-teal mb-4 font-mono"
+                >
                   {cat.label}
                 </h3>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

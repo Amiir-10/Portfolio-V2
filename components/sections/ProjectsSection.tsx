@@ -26,10 +26,14 @@ export function ProjectsSection() {
     const root = emblaApi.rootNode();
 
     function onWheel(e: WheelEvent) {
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      const dx = Math.abs(e.deltaX);
+      const dy = Math.abs(e.deltaY);
+      if (dx === 0 && dy === 0) return;
+
       e.preventDefault();
+      const scrollAmount = dx > dy ? e.deltaX : e.deltaY;
       emblaApi!.scrollTo(
-        emblaApi!.selectedScrollSnap() + (e.deltaY > 0 ? 1 : -1)
+        emblaApi!.selectedScrollSnap() + (scrollAmount > 0 ? 1 : -1)
       );
     }
 
