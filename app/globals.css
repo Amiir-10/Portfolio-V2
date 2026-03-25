@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-mint: #A1DCAC;
+  --color-teal: #38B0A6;
+  --color-navy: #172D56;
+  --color-royal: #1245A5;
+  --color-deep: #173372;
+
+  --bg-primary: #F8FAFB;
+  --bg-secondary: #FFFFFF;
+  --text-primary: #172D56;
+  --text-secondary: #475569;
+}
+
+.dark {
+  --bg-primary: #172D56;
+  --bg-secondary: #173372;
+  --text-primary: #F8FAFB;
+  --text-secondary: #94A3B8;
+}
+
+* {
+  cursor: none;
+}
+
+@media (pointer: coarse) {
+  * {
+    cursor: auto;
+  }
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 300ms, color 300ms;
+  overflow-x: hidden;
+}
+
